@@ -1,0 +1,9 @@
+body{
+   background : url('../asset/images/gg.jpg');
+   background-size: cover;
+}
+
+#g{
+  background : url('../asset/images/b2.png');
+  background-size: cover;
+}

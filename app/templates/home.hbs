@@ -1,0 +1,53 @@
+<div id="w">
+    <div class ="container-fluid" align="center" id="g">
+       <h1>Simple Github API Webapp</h1>
+       <p>Search for the Github user by entering the respective username</p>
+       <form {{action 'displayapi' model.username on='submit'}}>
+          {{input value=model.username}}
+        </form>
+
+      <div class = "row" >
+        <div class="col-md-6" style="width: 50%; border-right: solid 1px black">
+          {{#if user}}
+            <img src={{user.avatar_url}} width = "200" height = "200"><hr>
+            <ul> <font size = "4">USER-ID : </font>{{user.id}}<hr></ul>
+            <ul> <font size = "4">USER NAME : </font>{{user.login}}<hr></ul>
+            <ul> <font size = "4">CREATED AT : </font>{{moment-format user.created_at 'LLL'}}<hr></ul>
+            <ul> <font size = "4">FOLLOWERS : </font>{{user.followers}}<hr></ul>
+            <ul> <font size = "4">FOLLOWING : </font>{{user.following}}<hr></ul>
+            <ul> <font size = "4">EMAIL : </font>{{user.email}}<hr></ul>
+          {{/if}}
+        </div>
+        <div class="col-md-6">
+          {{#if repo}}
+          <table class="table table-bordered">
+             <thead>
+                  <tr>
+                    <th></th>
+                    <th>REPO NAME</th>
+                    <th>REPO_ID</th>
+                    <th>CREATED AT</th>
+                    <th>FORKS</th>
+                    <th>WATCHERS</th>
+                    <th>STARS</th>
+                  </tr>
+              </thead>
+            {{#each repo as |repos|}}
+              <tbody>
+                  <tr>
+                    <th scope="row">=></th>
+                    <td>{{#link-to 'commit' model.username repos.name}}{{repos.name}}{{/link-to}}</td>
+                    <td>{{repos.id}}</td>
+                    <td>{{moment-format repos.created_at 'LLL'}}</td>
+                    <td>{{repos.forks_count}}</td>
+                    <td>{{repos.watchers_count}}</td>
+                    <td>{{repos.stargazers_count}}</td>
+                  </tr>
+                </tbody>
+            {{/each}}
+          </table>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+</div>

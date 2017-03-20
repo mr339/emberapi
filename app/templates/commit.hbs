@@ -1,0 +1,27 @@
+
+<div class ="container-fluid" align="center">
+  <div class = "row">
+    <table class="table table-bordered">
+       <thead>
+            <tr>
+              <th></th>
+              <th>COMMITTER</th>
+              <th>COMMITTED DATE</th>
+              <th>MESSAGE</th>
+              <th>SHA-ID</th>
+            </tr>
+        </thead>
+      {{#each model as |coms|}}
+        <tbody>
+            <tr>
+              <th scope="row">=></th>
+              <td>{{coms.commit.author.name}}</td>
+              <td>{{moment-format coms.commit.author.date 'LLL'}}</td>
+              <td>{{coms.commit.message}}</td>
+              <td><a href= '{{coms.html_url}}'>{{coms.sha}}</a></td>
+            </tr>
+          </tbody>
+      {{/each}}
+    </table>
+</div>
+</div>
